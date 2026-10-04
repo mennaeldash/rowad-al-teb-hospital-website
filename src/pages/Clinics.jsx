@@ -38,9 +38,6 @@ import {
   getDoctor,
 } from "@/services/doctors";
 
-/* =========================================================
-   CONSTANTS
-========================================================= */
 
 const BACKEND_ORIGIN =
   import.meta.env.VITE_BACKEND_ORIGIN ||
@@ -49,9 +46,6 @@ const BACKEND_ORIGIN =
 const PHYSICAL_THERAPY_DEPARTMENT_NAME =
   "العلاج الطبيعي";
 
-/* =========================================================
-   DEPARTMENT ICONS
-========================================================= */
 
 const departmentIcons = {
   "heart-pulse": HeartPulse,
