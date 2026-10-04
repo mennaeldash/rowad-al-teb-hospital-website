@@ -2161,8 +2161,8 @@ export default function Home() {
                               text-lg
                               sm:text-sm
                               leading-6
-                              text-slate-700
-                              line-clamp-3
+                            whitespace-normal
+                             break-words
                             "
                           >
                             {partner.description}
