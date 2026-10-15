@@ -51,25 +51,34 @@ import {
 const HERO_IMAGES = [
   {
     src: "/images/photo_2026-09-28_05-46-44.webp",
-    position: "center center",
+    mobilePosition: "38% center",
+    tabletPosition: "44% center",
+    desktopPosition: "center center",
   },
   {
     src: "/images/Screenshot (5314).webp",
-    position:"center 72%",
+    mobilePosition: "50% 68%",
+    tabletPosition: "50% 70%",
+    desktopPosition: "center 72%",
   },
   {
     src: "/images/Screenshot (5310).webp",
-    position: "center 50%",
+    mobilePosition: "50% 50%",
+    tabletPosition: "50% 50%",
+    desktopPosition: "center 50%",
   },
   {
     src: "/images/Screenshot (5315).webp",
-    position: "center 45%",
+    mobilePosition: "50% 45%",
+    tabletPosition: "50% 45%",
+    desktopPosition: "center 45%",
   },
-    {
+  {
     src: "/images/Screenshot (5309).webp",
-    position: "center 30%",
+    mobilePosition: "50% 32%",
+    tabletPosition: "50% 30%",
+    desktopPosition: "center 30%",
   },
-  
 ];
 
 /* =========================================================
@@ -941,19 +950,51 @@ export default function Home() {
           HERO
       ===================================================== */}
 
-      <section className="relative min-h-[92vh] items-center overflow-hidden bg-[#0f5963]">
+      <section
+        className="
+          relative
+          min-h-[100svh]
+          sm:min-h-[95vh]
+          lg:min-h-[92vh]
+          items-center
+          overflow-hidden
+          bg-[#0f5963]
+        "
+      >
 
         {/* HERO SLIDER IMAGES */}
 
         <div className="absolute inset-0 z-0 overflow-hidden [perspective:1300px]">
           <style>{`
             @keyframes rowadHeroFadeIn {
-              from { opacity: 0.35; }
-              to { opacity: 1; }
+              from {
+                opacity: 0.35;
+              }
+
+              to {
+                opacity: 1;
+              }
             }
 
             .rowad-hero-fade {
               animation: rowadHeroFadeIn 900ms ease-out both;
+            }
+
+            .rowad-hero-responsive {
+              object-fit: cover;
+              object-position: var(--hero-mobile-position);
+            }
+
+            @media (min-width: 640px) {
+              .rowad-hero-responsive {
+                object-position: var(--hero-tablet-position);
+              }
+            }
+
+            @media (min-width: 1024px) {
+              .rowad-hero-responsive {
+                object-position: var(--hero-desktop-position);
+              }
             }
 
             @media (prefers-reduced-motion: reduce) {
@@ -962,33 +1003,52 @@ export default function Home() {
               }
             }
           `}</style>
-<img
-  key={HERO_IMAGES[activeHeroImage].src}
-  src={HERO_IMAGES[activeHeroImage].src}
-  alt="مستشفى رواد الطب"
-  fetchPriority={
-    activeHeroImage === 0
-      ? "high"
-      : "auto"
-  }
-  loading="eager"
-  decoding="async"
-  style={{
-    objectPosition:
-      HERO_IMAGES[activeHeroImage].position,
-  }}
-  className="
-    hero-image-3d
-    rowad-hero-fade
-    absolute
-    inset-0
-    w-full
-    h-full
-    object-cover
-  "
-/>
 
+          <img
+            key={
+              HERO_IMAGES[
+                activeHeroImage
+              ].src
+            }
+            src={
+              HERO_IMAGES[
+                activeHeroImage
+              ].src
+            }
+            alt="مستشفى رواد الطب"
+            fetchPriority={
+              activeHeroImage === 0
+                ? "high"
+                : "auto"
+            }
+            loading="eager"
+            decoding="async"
+            style={{
+              "--hero-mobile-position":
+                HERO_IMAGES[
+                  activeHeroImage
+                ].mobilePosition,
 
+              "--hero-tablet-position":
+                HERO_IMAGES[
+                  activeHeroImage
+                ].tabletPosition,
+
+              "--hero-desktop-position":
+                HERO_IMAGES[
+                  activeHeroImage
+                ].desktopPosition,
+            }}
+            className="
+              hero-image-3d
+              rowad-hero-fade
+              rowad-hero-responsive
+              absolute
+              inset-0
+              w-full
+              h-full
+            "
+          />
 
           {/* OVERLAY ثابت فوق كل الصور */}
 
