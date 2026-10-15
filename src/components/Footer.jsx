@@ -230,7 +230,7 @@ export default function Footer() {
             <div className="flex gap-3">
 
               <a
-                href="#"
+                href="https://www.facebook.com/eltakhsossyfym"
                 className="
                   w-10
                   h-10

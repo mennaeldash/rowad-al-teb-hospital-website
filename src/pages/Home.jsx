@@ -1257,7 +1257,7 @@ export default function Home() {
                 </Link>
 
                 <Link
-                  to="/about"
+                  to="#"
                   className="
                     inline-flex
                     items-center
