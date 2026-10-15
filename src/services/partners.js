@@ -1,7 +1,7 @@
 import api from "./api";
 
 const BACKEND_URL =
-  "http://rewaddashboard.runasp.net";
+  "https://rewaddashboard.runasp.net";
 
 /* =========================================================
    IMAGE URL

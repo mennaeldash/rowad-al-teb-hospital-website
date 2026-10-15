@@ -33,7 +33,7 @@ import {
 const BACKEND_ORIGIN = (
   import.meta.env.VITE_BACKEND_ORIGIN ||
   import.meta.env.VITE_API_BASE_URL ||
-  "http://rewaddashboard.runasp.net"
+  "https://rewaddashboard.runasp.net"
 ).replace(/\/$/, "");
 
 /* =========================================================

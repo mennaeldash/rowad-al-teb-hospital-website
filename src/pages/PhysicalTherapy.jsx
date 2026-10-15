@@ -27,7 +27,7 @@ import {
 
 const BACKEND_ORIGIN =
   import.meta.env.VITE_BACKEND_ORIGIN ||
-  "http://rewaddashboard.runasp.net";
+  "https://rewaddashboard.runasp.net";
 
 const PHYSICAL_THERAPY_NAME =
   "العلاج الطبيعي";

@@ -35,7 +35,7 @@ const getBackendOrigin = () => {
       .replace(/\/$/, "");
   }
 
-  return "http://rewaddashboard.runasp.net";
+  return "https://rewaddashboard.runasp.net";
 };
 
 const BACKEND_ORIGIN =

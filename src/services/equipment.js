@@ -5,7 +5,7 @@ const EQUIPMENT_ENDPOINT =
 
 const BACKEND_ORIGIN =
   import.meta.env.VITE_BACKEND_ORIGIN ||
-  "http://rewaddashboard.runasp.net";
+  "https://rewaddashboard.runasp.net";
 
 /* ======================================================
    IMAGE URL
@@ -51,7 +51,7 @@ function getBackendImageUrl(
 
     نحوله إلى:
 
-    http://rewaddashboard.runasp.net/images/Services/abc.png
+    https://rewaddashboard.runasp.net/images/Services/abc.png
   */
 
   return `${BACKEND_ORIGIN}${
