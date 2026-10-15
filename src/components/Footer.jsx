@@ -540,11 +540,22 @@ export default function Footer() {
           "
         >
 
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-500 text-center md:text-right">
             © {new Date().getFullYear()} مستشفى رواد الطب التخصصي. جميع الحقوق محفوظة.
           </p>
 
-          <div className="flex gap-6 text-sm text-slate-500">
+          <div
+            className="
+              flex
+              flex-wrap
+              items-center
+              justify-center
+              gap-x-6
+              gap-y-3
+              text-sm
+              text-slate-500
+            "
+          >
 
             <a
               href="#"
@@ -558,6 +569,26 @@ export default function Footer() {
               className="hover:text-primary-400 transition-colors"
             >
               الشروط والأحكام
+            </a>
+
+            <a
+              href="https://www.instagram.com/beta_software_solutions?mdxt=OGFtMTVkd2ZxZzBk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                inline-flex
+                items-center
+                gap-1.5
+                text-slate-500
+                hover:text-primary-400
+                transition-colors
+              "
+            >
+              تم التطوير بواسطة
+
+              <span className="font-bold text-slate-300">
+                BETA
+              </span>
             </a>
 
           </div>
