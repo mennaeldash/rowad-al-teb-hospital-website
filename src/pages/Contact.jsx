@@ -57,21 +57,27 @@ const getMapSrc = (
     ).trim();
 
   /*
-    لو عندنا رابط خريطة فعلي
-    نستخدمه مباشرة.
+    نستخدم رابط Google Maps مباشرة
+    فقط لو هو Embed URL فعلاً.
+
+    الروابط العادية مثل:
+    https://www.google.com/maps/place/...
+    لا تعمل داخل iframe وGoogle يرفض الاتصال.
   */
 
   if (
-    url.startsWith("http://") ||
-    url.startsWith("https://")
+    url &&
+    (
+      url.includes("/maps/embed") ||
+      url.includes("output=embed")
+    )
   ) {
     return url;
   }
 
   /*
-    لو مفيش mapUrl لكن عندنا
-    عنوان حقيقي من الباك،
-    نعمل الخريطة من العنوان.
+    لو الـ mapUrl رابط عادي أو غير صالح للـ iframe،
+    نستخدم عنوان المستشفى ونبني منه Embed URL صالح.
   */
 
   const safeAddress =
@@ -86,8 +92,8 @@ const getMapSrc = (
   }
 
   /*
-    لا Map URL ولا عنوان
-    = لا توجد خريطة.
+    لا يوجد Embed URL صالح ولا عنوان
+    = لا نعرض خريطة.
   */
 
   return "";
@@ -174,8 +180,6 @@ export default function Contact() {
 
   /* =======================================================
      CONTACT DATA
-
-     مفيش أي Default Data هنا.
   ======================================================= */
 
   const contact =
@@ -380,8 +384,6 @@ export default function Contact() {
 
   /* =======================================================
      SUBMIT COMPLAINT / SUGGESTION
-
-     POST /api/PatientFeedbacks
   ======================================================= */
 
   const handleSubmit =
@@ -937,8 +939,6 @@ export default function Contact() {
                                 }
                               </h3>
 
-                              {/* ADDRESS */}
-
                               {card.key ===
                                 "address" && (
                                 <p className="text-sm text-slate-600 leading-relaxed">
@@ -947,8 +947,6 @@ export default function Contact() {
                                   }
                                 </p>
                               )}
-
-                              {/* PHONE */}
 
                               {card.key ===
                                 "phone" && (
@@ -1000,8 +998,6 @@ export default function Contact() {
                                 </>
                               )}
 
-                              {/* EMAIL */}
-
                               {card.key ===
                                 "email" && (
                                 <a
@@ -1019,8 +1015,6 @@ export default function Contact() {
                                   }
                                 </a>
                               )}
-
-                              {/* HOURS */}
 
                               {card.key ===
                                 "hours" && (
@@ -1111,6 +1105,8 @@ export default function Contact() {
 
                       <a
                         href="https://www.facebook.com/eltakhsossyfym"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="
                           w-12
                           h-12
