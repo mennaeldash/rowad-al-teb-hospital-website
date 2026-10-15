@@ -475,7 +475,8 @@ export default function HomeBooking() {
 
               </div>
 
-   <Reveal delay={100}>
+            </Reveal>
+<Reveal delay={100}>
   <div
     className="
       w-full
