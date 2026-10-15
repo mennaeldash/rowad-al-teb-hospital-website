@@ -475,36 +475,43 @@ export default function HomeBooking() {
 
               </div>
 
-            </Reveal>
-
-            <Reveal delay={100}>
-
-              <div
-                className="
-                  rounded-[28px]
-                  border
-                  border-[#E7E3E3]
-                  bg-white
-                  p-3
-                  shadow-[0_20px_45px_rgba(25,119,134,0.08)]
-                "
-              >
-
-                <div className="overflow-hidden rounded-[22px]">
-
-                  <PlaceholderImage
-                    type="department"
-  src="/images/ChatGPT Image Aug 16, 2026, 04_31_45 AM.webp"
-                    alt="خدمة الرعاية المنزلية"
-                    className="h-[360px] w-full md:h-[360px]"
-                    rounded="rounded-[22px]"
-                  />
-
-                </div>
-
-              </div>
-
-            </Reveal>
+   <Reveal delay={100}>
+  <div
+    className="
+      w-full
+      rounded-[24px]
+      border
+      border-[#E7E3E3]
+      bg-white
+      p-2
+      sm:p-3
+      shadow-[0_20px_45px_rgba(25,119,134,0.08)]
+    "
+  >
+    <div
+      className="
+        w-full
+        overflow-hidden
+        rounded-[18px]
+        sm:rounded-[22px]
+        bg-white
+      "
+    >
+      <PlaceholderImage
+        type="department"
+        src="/images/ChatGPT Image Aug 16, 2026, 04_31_45 AM.webp"
+        alt="خدمة الرعاية المنزلية"
+        className="
+          block
+          w-full
+          h-auto
+          object-contain
+        "
+        rounded="rounded-[18px] sm:rounded-[22px]"
+      />
+    </div>
+  </div>
+</Reveal>
 
           </div>
 
