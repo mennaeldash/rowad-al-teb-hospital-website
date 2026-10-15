@@ -494,7 +494,7 @@ export default function HomeBooking() {
 
                   <PlaceholderImage
                     type="department"
-                    src="/public/images/ChatGPT Image Aug 16, 2026, 04_31_45 AM.webp"
+  src="/images/ChatGPT Image Aug 16, 2026, 04_31_45 AM.webp"
                     alt="خدمة الرعاية المنزلية"
                     className="h-[360px] w-full md:h-[360px]"
                     rounded="rounded-[22px]"
