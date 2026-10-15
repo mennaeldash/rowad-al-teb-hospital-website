@@ -2177,9 +2177,9 @@ export default function Home() {
                           <p
                             className="
                               px-1
-                              text-lg
+                              text-sm
                               sm:text-sm
-                              leading-6
+                              leading-5
                             whitespace-normal
                              break-words
                             "
