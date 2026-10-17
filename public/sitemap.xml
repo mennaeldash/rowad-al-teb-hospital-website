@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://rewadelteb.org/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://rewadelteb.org/doctors</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://rewadelteb.org/departments</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://rewadelteb.org/booking</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://rewadelteb.org/home-booking</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rewadelteb.org/contact</loc>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
