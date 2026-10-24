@@ -1522,6 +1522,284 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* =====================================================
+          PARTNERS
+      ===================================================== */}
+
+      <section
+        className="
+          section-padding
+          relative
+          overflow-hidden
+          bg-[linear-gradient(135deg,#FAF6F6_0%,#F4FAFA_50%,#D1F9FC_100%)]
+        "
+      >
+        <div className="container-custom relative">
+          <Reveal>
+            <SectionHeading
+              badge="شركاء النجاح"
+              title="تعاقدات نفخر بها"
+              subtitle="نعتز بثقة شركائنا وتعاونهم معنا لتقديم رعاية صحية متكاملة بأعلى مستوى من الجودة"
+            />
+          </Reveal>
+
+          <div className="relative mt-8">
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  aria-label="الانتقال إلى السابق"
+                  onClick={() =>
+                    moveCarousel(
+                      "prev"
+                    )
+                  }
+                  className="
+                    flex
+                    h-11
+                    w-11
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-[#83BDC4]/40
+                    bg-white/90
+                    backdrop-blur-xl
+                    text-[#197786]
+                    shadow-[0_8px_25px_rgba(25,119,134,0.10)]
+                    transition-all
+                    duration-300
+                    hover:scale-105
+                    hover:bg-[#197786]
+                    hover:text-white
+                    hover:border-[#197786]
+                  "
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+
+                <button
+                  type="button"
+                  aria-label="الانتقال إلى التالي"
+                  onClick={() =>
+                    moveCarousel(
+                      "next"
+                    )
+                  }
+                  className="
+                    flex
+                    h-11
+                    w-11
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-[#83BDC4]/40
+                    bg-white/90
+                    backdrop-blur-xl
+                    text-[#197786]
+                    shadow-[0_8px_25px_rgba(25,119,134,0.10)]
+                    transition-all
+                    duration-300
+                    hover:scale-105
+                    hover:bg-[#197786]
+                    hover:text-white
+                    hover:border-[#197786]
+                  "
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  right-0
+                  top-0
+                  bottom-0
+                  z-20
+                  w-10
+                  md:w-16
+                  bg-gradient-to-l
+                  from-[#EEF9FA]
+                  via-[#EEF9FA]/60
+                  to-transparent
+                "
+              />
+
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  left-0
+                  top-0
+                  bottom-0
+                  z-20
+                  w-10
+                  md:w-16
+                  bg-gradient-to-r
+                  from-[#F6F8F8]
+                  via-[#F6F8F8]/60
+                  to-transparent
+                "
+              />
+
+              <div
+                ref={
+                  carouselTrackRef
+                }
+                dir="ltr"
+                onPointerDown={
+                  handlePointerDown
+                }
+                onPointerMove={
+                  handlePointerMove
+                }
+                onPointerUp={
+                  handlePointerUp
+                }
+                onPointerCancel={
+                  handlePointerUp
+                }
+                className="
+                  flex
+                  gap-5
+                  overflow-x-scroll
+                  overflow-y-hidden
+                  px-3
+                  py-7
+                  select-none
+                  touch-pan-y
+                  cursor-grab
+                  active:cursor-grabbing
+                  [scrollbar-width:none]
+                  [&::-webkit-scrollbar]:hidden
+                "
+              >
+                {carouselPartners.map(
+                  (
+                    partner,
+                    idx
+                  ) => (
+                    <div
+                      key={`${partner.id}-${idx}`}
+                      dir="rtl"
+                      className="
+                        partner-card
+                        group
+                        shrink-0
+                        w-[150px]
+                        sm:w-[180px]
+                        md:w-[195px]
+                        lg:w-[200px]
+                        transition-transform
+                        duration-500
+                        hover:-translate-y-2
+                      "
+                    >
+                      <div
+                        className="
+                          flex
+                          h-full
+                          min-h-[220px]
+                          flex-col
+                          items-center
+                          justify-center
+                          gap-3
+                          rounded-[24px]
+                          border
+                          border-[#E7E3E3]
+                          bg-white
+                          px-4
+                          py-5
+                          text-center
+                          shadow-[0_8px_28px_rgba(25,119,134,0.06)]
+                          transition-all
+                          duration-500
+                          ease-out
+                          group-hover:border-[#83BDC4]
+                          group-hover:shadow-[0_18px_40px_rgba(25,119,134,0.14)]
+                        "
+                      >
+                        <div
+                          className="
+                            flex
+                            h-[95px]
+                            w-full
+                            items-center
+                            justify-center
+                            rounded-2xl
+                            bg-[#FAF6F6]/60
+                            p-3
+                          "
+                        >
+                          <PlaceholderImage
+                            type="company"
+                            src={
+                              partner.logo_url
+                            }
+                            alt={
+                              partner.name
+                            }
+                            className="
+                              h-[75px]
+                              w-full
+                              object-contain
+                              transition-transform
+                              duration-500
+                              group-hover:scale-105
+                            "
+                            rounded="rounded-xl"
+                          />
+                        </div>
+
+                        <h3
+                          className="
+                            text-sm
+                            sm:text-base
+                            font-bold
+                            text-[#2F3437]
+                            transition-colors
+                            duration-300
+                            group-hover:text-[#197786]
+                          "
+                        >
+                          {
+                            partner.name
+                          }
+                        </h3>
+
+                        {partner.description && (
+                          <p
+                            className="
+                              px-1
+                              text-sm
+                              sm:text-sm
+                              leading-5
+                            whitespace-normal
+                             break-words
+                            "
+                          >
+                            {partner.description}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
       {/* =====================================================
           PATIENT RIGHTS
       ===================================================== */}
@@ -1925,279 +2203,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* =====================================================
-          PARTNERS
-      ===================================================== */}
-
-      <section
-        className="
-          section-padding
-          relative
-          overflow-hidden
-          bg-[linear-gradient(135deg,#FAF6F6_0%,#F4FAFA_50%,#D1F9FC_100%)]
-        "
-      >
-        <div className="container-custom relative">
-          <Reveal>
-            <SectionHeading
-              badge="شركاء النجاح"
-              title="شراكات نفخر بها"
-              subtitle="نعتز بثقة شركائنا وتعاونهم معنا لتقديم رعاية صحية متكاملة بأعلى مستوى من الجودة"
-            />
-          </Reveal>
-
-          <div className="relative mt-8">
-            <div className="mb-4 flex items-center justify-between">
-              <div className="flex gap-3">
-                <button
-                  type="button"
-                  aria-label="الانتقال إلى السابق"
-                  onClick={() =>
-                    moveCarousel(
-                      "prev"
-                    )
-                  }
-                  className="
-                    flex
-                    h-11
-                    w-11
-                    items-center
-                    justify-center
-                    rounded-full
-                    border
-                    border-[#83BDC4]/40
-                    bg-white/90
-                    backdrop-blur-xl
-                    text-[#197786]
-                    shadow-[0_8px_25px_rgba(25,119,134,0.10)]
-                    transition-all
-                    duration-300
-                    hover:scale-105
-                    hover:bg-[#197786]
-                    hover:text-white
-                    hover:border-[#197786]
-                  "
-                >
-                  <ChevronRight className="h-5 w-5" />
-                </button>
-
-                <button
-                  type="button"
-                  aria-label="الانتقال إلى التالي"
-                  onClick={() =>
-                    moveCarousel(
-                      "next"
-                    )
-                  }
-                  className="
-                    flex
-                    h-11
-                    w-11
-                    items-center
-                    justify-center
-                    rounded-full
-                    border
-                    border-[#83BDC4]/40
-                    bg-white/90
-                    backdrop-blur-xl
-                    text-[#197786]
-                    shadow-[0_8px_25px_rgba(25,119,134,0.10)]
-                    transition-all
-                    duration-300
-                    hover:scale-105
-                    hover:bg-[#197786]
-                    hover:text-white
-                    hover:border-[#197786]
-                  "
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                </button>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div
-                className="
-                  pointer-events-none
-                  absolute
-                  right-0
-                  top-0
-                  bottom-0
-                  z-20
-                  w-10
-                  md:w-16
-                  bg-gradient-to-l
-                  from-[#EEF9FA]
-                  via-[#EEF9FA]/60
-                  to-transparent
-                "
-              />
-
-              <div
-                className="
-                  pointer-events-none
-                  absolute
-                  left-0
-                  top-0
-                  bottom-0
-                  z-20
-                  w-10
-                  md:w-16
-                  bg-gradient-to-r
-                  from-[#F6F8F8]
-                  via-[#F6F8F8]/60
-                  to-transparent
-                "
-              />
-
-              <div
-                ref={
-                  carouselTrackRef
-                }
-                dir="ltr"
-                onPointerDown={
-                  handlePointerDown
-                }
-                onPointerMove={
-                  handlePointerMove
-                }
-                onPointerUp={
-                  handlePointerUp
-                }
-                onPointerCancel={
-                  handlePointerUp
-                }
-                className="
-                  flex
-                  gap-5
-                  overflow-x-scroll
-                  overflow-y-hidden
-                  px-3
-                  py-7
-                  select-none
-                  touch-pan-y
-                  cursor-grab
-                  active:cursor-grabbing
-                  [scrollbar-width:none]
-                  [&::-webkit-scrollbar]:hidden
-                "
-              >
-                {carouselPartners.map(
-                  (
-                    partner,
-                    idx
-                  ) => (
-                    <div
-                      key={`${partner.id}-${idx}`}
-                      dir="rtl"
-                      className="
-                        partner-card
-                        group
-                        shrink-0
-                        w-[150px]
-                        sm:w-[180px]
-                        md:w-[195px]
-                        lg:w-[200px]
-                        transition-transform
-                        duration-500
-                        hover:-translate-y-2
-                      "
-                    >
-                      <div
-                        className="
-                          flex
-                          h-full
-                          min-h-[220px]
-                          flex-col
-                          items-center
-                          justify-center
-                          gap-3
-                          rounded-[24px]
-                          border
-                          border-[#E7E3E3]
-                          bg-white
-                          px-4
-                          py-5
-                          text-center
-                          shadow-[0_8px_28px_rgba(25,119,134,0.06)]
-                          transition-all
-                          duration-500
-                          ease-out
-                          group-hover:border-[#83BDC4]
-                          group-hover:shadow-[0_18px_40px_rgba(25,119,134,0.14)]
-                        "
-                      >
-                        <div
-                          className="
-                            flex
-                            h-[95px]
-                            w-full
-                            items-center
-                            justify-center
-                            rounded-2xl
-                            bg-[#FAF6F6]/60
-                            p-3
-                          "
-                        >
-                          <PlaceholderImage
-                            type="company"
-                            src={
-                              partner.logo_url
-                            }
-                            alt={
-                              partner.name
-                            }
-                            className="
-                              h-[75px]
-                              w-full
-                              object-contain
-                              transition-transform
-                              duration-500
-                              group-hover:scale-105
-                            "
-                            rounded="rounded-xl"
-                          />
-                        </div>
-
-                        <h3
-                          className="
-                            text-sm
-                            sm:text-base
-                            font-bold
-                            text-[#2F3437]
-                            transition-colors
-                            duration-300
-                            group-hover:text-[#197786]
-                          "
-                        >
-                          {
-                            partner.name
-                          }
-                        </h3>
-
-                        {partner.description && (
-                          <p
-                            className="
-                              px-1
-                              text-sm
-                              sm:text-sm
-                              leading-5
-                            whitespace-normal
-                             break-words
-                            "
-                          >
-                            {partner.description}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* =====================================================
           STAFF

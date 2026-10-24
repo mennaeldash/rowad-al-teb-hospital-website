@@ -412,3 +412,67 @@ export async function createAdmin(
     throw error;
   }
 }
+/* =========================================================
+   GET USERS
+   GET /api/auth/users
+========================================================= */
+
+export async function getUsers() {
+  try {
+    const response =
+      await api.get(
+        "/api/auth/users"
+      );
+
+    return (
+      response.data?.data ||
+      []
+    );
+  } catch (error) {
+    console.error(
+      "GET USERS ERROR:",
+      error?.response?.data ||
+        error
+    );
+
+    throw error;
+  }
+}
+
+
+/* =========================================================
+   DELETE USER
+   DELETE /api/auth/users/{userId}
+========================================================= */
+
+export async function deleteUser(
+  userId
+) {
+  const normalizedUserId =
+    String(
+      userId ?? ""
+    ).trim();
+
+  if (!normalizedUserId) {
+    throw new Error(
+      "معرّف المستخدم مطلوب"
+    );
+  }
+
+  try {
+    const response =
+      await api.delete(
+        `/api/auth/users/${normalizedUserId}`
+      );
+
+    return response.data;
+  } catch (error) {
+    console.error(
+      "DELETE USER ERROR:",
+      error?.response?.data ||
+        error
+    );
+
+    throw error;
+  }
+}

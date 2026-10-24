@@ -259,6 +259,454 @@ const getDateDayName = (
   );
 };
 
+
+/* =========================================================
+   ARABIC CALENDAR
+========================================================= */
+
+const ARABIC_WEEK_DAYS = [
+  "الأحد",
+  "الاثنين",
+  "الثلاثاء",
+  "الأربعاء",
+  "الخميس",
+  "الجمعة",
+  "السبت",
+];
+
+const ARABIC_MONTHS = [
+  "يناير",
+  "فبراير",
+  "مارس",
+  "أبريل",
+  "مايو",
+  "يونيو",
+  "يوليو",
+  "أغسطس",
+  "سبتمبر",
+  "أكتوبر",
+  "نوفمبر",
+  "ديسمبر",
+];
+
+const formatDateValue = (date) => {
+  const year =
+    date.getFullYear();
+
+  const month =
+    String(
+      date.getMonth() + 1
+    ).padStart(
+      2,
+      "0"
+    );
+
+  const day =
+    String(
+      date.getDate()
+    ).padStart(
+      2,
+      "0"
+    );
+
+  return `${year}-${month}-${day}`;
+};
+
+const getDateFromValue = (
+  value
+) => {
+  if (!value) {
+    return null;
+  }
+
+  const [
+    year,
+    month,
+    day,
+  ] = value
+    .split("-")
+    .map(Number);
+
+  if (
+    !year ||
+    !month ||
+    !day
+  ) {
+    return null;
+  }
+
+  return new Date(
+    year,
+    month - 1,
+    day
+  );
+};
+
+function ArabicDatePicker({
+  value,
+  onChange,
+  min,
+  disabled,
+}) {
+  const [
+    isOpen,
+    setIsOpen,
+  ] = useState(false);
+
+  const selectedDate =
+    useMemo(
+      () =>
+        getDateFromValue(
+          value
+        ),
+      [value]
+    );
+
+  const initialViewDate =
+    selectedDate ||
+    new Date();
+
+  const [
+    viewDate,
+    setViewDate,
+  ] = useState(
+    new Date(
+      initialViewDate.getFullYear(),
+      initialViewDate.getMonth(),
+      1
+    )
+  );
+
+  useEffect(() => {
+    if (!selectedDate) {
+      return;
+    }
+
+    setViewDate(
+      new Date(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth(),
+        1
+      )
+    );
+  }, [selectedDate]);
+
+  const year =
+    viewDate.getFullYear();
+
+  const month =
+    viewDate.getMonth();
+
+  const firstDayIndex =
+    new Date(
+      year,
+      month,
+      1
+    ).getDay();
+
+  const daysInMonth =
+    new Date(
+      year,
+      month + 1,
+      0
+    ).getDate();
+
+  const calendarCells = [
+    ...Array(
+      firstDayIndex
+    ).fill(null),
+    ...Array.from(
+      {
+        length:
+          daysInMonth,
+      },
+      (_, index) =>
+        index + 1
+    ),
+  ];
+
+  while (
+    calendarCells.length %
+      7 !==
+    0
+  ) {
+    calendarCells.push(
+      null
+    );
+  }
+
+  const goToPreviousMonth =
+    () => {
+      setViewDate(
+        new Date(
+          year,
+          month - 1,
+          1
+        )
+      );
+    };
+
+  const goToNextMonth =
+    () => {
+      setViewDate(
+        new Date(
+          year,
+          month + 1,
+          1
+        )
+      );
+    };
+
+  const displayValue =
+    selectedDate
+      ? `${
+          DAY_LABELS[
+            selectedDate.getDay()
+          ]
+        } ${
+          selectedDate.getDate()
+        } ${
+          ARABIC_MONTHS[
+            selectedDate.getMonth()
+          ]
+        } ${
+          selectedDate.getFullYear()
+        }`
+      : " برجاء الضغط علي التقويم لاختيار اليوم المحدد";
+
+  return (
+    <div
+      className="relative"
+      dir="rtl"
+    >
+      <button
+        type="button"
+        disabled={disabled}
+        onClick={() => {
+          if (!disabled) {
+            setIsOpen(
+              (previous) =>
+                !previous
+            );
+          }
+        }}
+        className="
+          w-full
+          px-8
+          py-3
+          rounded-xl
+          border
+          border-slate-200
+          bg-white
+          text-right
+          text-slate-800
+          outline-none
+          transition-all
+          hover:border-primary-400
+          focus:border-primary-500
+          focus:ring-2
+          focus:ring-primary-200
+          disabled:opacity-50
+          disabled:cursor-not-allowed
+        "
+      >
+        <span className="flex items-center justify-between gap-3">
+          <span>
+            {displayValue}
+          </span>
+
+          <CalendarDays className="w-8 h-8 shrink-0 text-primary-900" />
+        </span>
+        <span className="absolute top-0 left-0 h-full w-10 flex items-center justify-center text-primary-900"> ➤ </span>
+      </button>
+
+      {isOpen &&
+        !disabled && (
+          <div
+            className="
+              absolute
+              z-50
+              top-full
+              right-0
+              mt-2
+              w-[min(88vw,390px)]
+              max-w-full
+              rounded-2xl
+              border
+              border-slate-200
+              bg-white
+              p-3
+              shadow-xl
+            "
+          >
+            <div className="flex items-center justify-between gap-2 mb-2.5">
+              <button
+                type="button"
+                onClick={
+                  goToPreviousMonth
+                }
+                className="
+                  w-8
+                  h-8
+                  rounded-lg
+                  bg-slate-100
+                  text-slate-700
+                  text-lg
+                  font-black
+                  transition-all
+                  hover:bg-primary-100
+                  hover:text-primary-700
+                "
+                aria-label="الشهر السابق"
+              >
+                ›
+              </button>
+
+              <div className="text-center font-extrabold text-slate-800">
+                {
+                  ARABIC_MONTHS[
+                    month
+                  ]
+                }{" "}
+                {year}
+              </div>
+
+              <button
+                type="button"
+                onClick={
+                  goToNextMonth
+                }
+                className="
+                  w-8
+                  h-8
+                  rounded-lg
+                  bg-slate-100
+                  text-slate-700
+                  text-lg
+                  font-black
+                  transition-all
+                  hover:bg-primary-100
+                  hover:text-primary-700
+                "
+                aria-label="الشهر التالي"
+              >
+                ‹
+              </button>
+            </div>
+
+            <div className="grid grid-cols-7 gap-0.5 mb-1.5">
+              {ARABIC_WEEK_DAYS.map(
+                (dayName) => (
+                  <div
+                    key={
+                      dayName
+                    }
+                    className="
+                      h-7
+                      flex
+                      items-center
+                      justify-center
+                      px-0.5
+                      text-center
+                      text-[10px]
+                      sm:text-[11px]
+                      md:text-[12px]
+                      leading-tight
+                      font-extrabold
+                      text-primary-700
+                    "
+                  >
+                    {dayName}
+                  </div>
+                )
+              )}
+            </div>
+
+            <div className="grid grid-cols-7 gap-0.5">
+              {calendarCells.map(
+                (
+                  dayNumber,
+                  index
+                ) => {
+                  if (
+                    !dayNumber
+                  ) {
+                    return (
+                      <div
+                        key={`empty-${index}`}
+                        className="h-7"
+                      />
+                    );
+                  }
+
+                  const date =
+                    new Date(
+                      year,
+                      month,
+                      dayNumber
+                    );
+
+                  const dateValue =
+                    formatDateValue(
+                      date
+                    );
+
+                  const isPast =
+                    Boolean(min) &&
+                    dateValue <
+                      min;
+
+                  const isSelected =
+                    value ===
+                    dateValue;
+
+                  return (
+                    <button
+                      key={
+                        dateValue
+                      }
+                      type="button"
+                      disabled={
+                        isPast
+                      }
+                      onClick={() => {
+                        onChange(
+                          dateValue
+                        );
+                        setIsOpen(
+                          false
+                        );
+                      }}
+                      className={`
+                        h-7
+                        rounded-lg
+                        text-md
+                        font-bold
+                        transition-all
+                        ${
+                          isSelected
+                            ? "bg-primary-600 text-white shadow-md"
+                            : "text-slate-700 hover:bg-primary-100 hover:text-primary-700"
+                        }
+                        ${
+                          isPast
+                            ? "opacity-30 cursor-not-allowed hover:bg-transparent hover:text-slate-700"
+                            : ""
+                        }
+                      `}
+                    >
+                      {dayNumber}
+                    </button>
+                  );
+                }
+              )}
+            </div>
+          </div>
+        )}
+    </div>
+  );
+}
+
 /* =========================================================
    DOCTOR STATUS
 ========================================================= */
@@ -1001,7 +1449,7 @@ export default function BookingWizard({
 
             <div className="flex justify-between items-center gap-4">
               <span className="text-slate-500 text-sm">
-                تاريخ الحجز
+                تاريخ الحجز 
               </span>
 
               <span
@@ -1504,32 +1952,28 @@ export default function BookingWizard({
                 labelClass
               }
             >
-              تاريخ الحجز *
-            </label>
+تاريخ الكشف
 
-            <input
-              type="date"
-              required
-              min={
-                todayDate
-              }
+يرجى اختيار تاريخ من أيام تواجد الطبيب الموضحة بالأعلى، ويمكنك اختيار نفس اليوم في الأسبوع الحالي أو أي أسبوع قادم، حسب الموعد المناسب لك.            </label>
+
+            <ArabicDatePicker
               value={
                 form.appointment_date
               }
-              onChange={(
-                event
-              ) =>
-                handleInputChange(
-                  "appointment_date",
-                  event.target.value
-                )
-              }
-              className={
-                inputClass
+              min={
+                todayDate
               }
               disabled={
                 submitting ||
                 !doctorAvailable
+              }
+              onChange={(
+                value
+              ) =>
+                handleInputChange(
+                  "appointment_date",
+                  value
+                )
               }
             />
 

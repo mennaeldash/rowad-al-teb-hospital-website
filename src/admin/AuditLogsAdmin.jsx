@@ -45,7 +45,11 @@ const ENTITY_LABELS = {
   statics: "الإحصائيات",
 
   applicationuser: "المستخدمين",
+  identityuser: "المستخدمين",
+  identityuserrole: "المستخدمين",
+  "identityuserrole`1": "المستخدمين",
   user: "المستخدمين",
+  users: "المستخدمين",
 
   appointment: "المواعيد",
   appointments: "المواعيد",
@@ -92,6 +96,22 @@ const getEntityLabel = (
     normalizeValue(
       entity
     );
+
+  if (
+    value.includes(
+      "identityuserrole"
+    ) ||
+    value.includes(
+      "identityuser"
+    ) ||
+    value.includes(
+      "applicationuser"
+    ) ||
+    value === "user" ||
+    value === "users"
+  ) {
+    return "المستخدمين";
+  }
 
   return (
     ENTITY_LABELS[value] ||

@@ -338,3 +338,12 @@ section {
   }
 }
 
+::selection {
+  background: #197786;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: #197786;
+  color: #ffffff;
+}
